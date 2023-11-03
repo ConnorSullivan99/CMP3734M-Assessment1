@@ -12,18 +12,19 @@ public class CarController : MonoBehaviour
     public Rigidbody rb;
     public bool go = false;
     public float initalDelay;
-    public GameObject Light1;
-    public GameObject Light2;
-    public GameObject Light3;
+    //public GameObject Light1;
+    //public GameObject Light2;
+    //public GameObject Light3;
 
     void SetRoute()
     {
-        //routeNumber = Random.Range(0, 2);
-        routeNumber = 0;
+        routeNumber = Random.Range(0, 2);
+        //routeNumber = 0;
 
         if(routeNumber == 0) route = new List<Transform> { cwps[0], cwps[1], cwps[2], cwps[3], cwps[4] };
+        else if (routeNumber == 1) route = new List<Transform> { cwps[5], cwps[6], cwps[7] };
 
-        transform.position = new Vector3(route[0].position.x, 0.0f,
+        transform.position = new Vector3(route[0].position.x, 0.48f,
         route[0].position.z);
         targetWP = 1;
     }
@@ -34,9 +35,9 @@ public class CarController : MonoBehaviour
         cwps = new List<Transform>();
         rb = GetComponent<Rigidbody>();
         GameObject wp;
-        Light1 = GameObject.Find("TL1");
-        Light2 = GameObject.Find("TL2/Red Light");
-        Light3 = GameObject.Find("TL3");
+        //Light1 = GameObject.Find("TL1");
+        //Light2 = GameObject.Find("TL2/Red Light");
+        //Light3 = GameObject.Find("TL3");
 
         wp = GameObject.Find("CWP1");
         cwps.Add(wp.transform);
@@ -48,11 +49,17 @@ public class CarController : MonoBehaviour
         cwps.Add(wp.transform);
         wp = GameObject.Find("CWP5");
         cwps.Add(wp.transform);
+        wp = GameObject.Find("CWP6");
+        cwps.Add(wp.transform);
+        wp = GameObject.Find("CWP7");
+        cwps.Add(wp.transform);
+        wp = GameObject.Find("CWP8");
+        cwps.Add(wp.transform);
 
-        
+
 
         initalDelay = Random.Range(2.0f, 12.0f);
-        transform.position = new Vector3(0.0f, -5.0f, 0.0f);
+        transform.position = new Vector3(0.0f, 1f, 0.0f);
 
         SetRoute();
     }
@@ -97,12 +104,12 @@ public class CarController : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(desiredForward);
         rb.MoveRotation(rotation);
 
-        while (Light2.activeInHierarchy)
-        {
-            if (targetWP == 2)
-            {
-                go = false;
-            }
-        }
+        //while (Light2.activeInHierarchy)
+        //{
+        //    if (targetWP == 2)
+        //    {
+        //        go = false;
+        //    }
+        //}
     }
 }
